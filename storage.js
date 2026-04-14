@@ -60,12 +60,14 @@ const Storage = (() => {
   }
 
   async function listPuzzles() {
-    const snap = await db.collection('puzzles').orderBy('createdAt', 'desc').get();
-    return snap.docs.map(doc => {
+    const snap = await db.collection('puzzles').get();
+    const docs = snap.docs.map(doc => {
       const data = doc.data();
       data.cells = unflattenCells(data.cells, data.rows, data.cols);
       return data;
     });
+    // Sort newest first in JS — avoids Firestore index requirements
+    return docs.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
   }
 
   function getAuth() { return auth; }

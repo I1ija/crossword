@@ -85,8 +85,11 @@ async function renderPuzzles() {
     });
 
   } catch (err) {
-    console.error(err);
-    grid.innerHTML = '<p class="loading-msg" style="color:#c0392b">Failed to load puzzles. Check your Firebase config.</p>';
+    console.error('listPuzzles error:', err);
+    const msg = err.code === 'permission-denied'
+      ? 'Permission denied — update your Firestore rules to allow public reads.'
+      : (err.message || 'Unknown error. Check the browser console.');
+    grid.innerHTML = `<p class="loading-msg" style="color:#c0392b">Failed to load puzzles: ${msg}</p>`;
   }
 }
 
