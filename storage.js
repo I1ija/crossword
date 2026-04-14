@@ -17,8 +17,11 @@ const Storage = (() => {
   let auth = null;
 
   function init() {
-    db   = firebase.firestore();
-    auth = firebase.auth();
+    db = firebase.firestore();
+    // Auth is only loaded on maker.html — skip it on other pages
+    if (typeof firebase.auth === 'function') {
+      auth = firebase.auth();
+    }
   }
 
   // Reconstruct 2D array from flat array
