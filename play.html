@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crossword</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="play.css" />
+</head>
+<body class="play-page">
+  <header class="site-header play-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="index.html" class="nav-link">← All Puzzles</a>
+        <span id="play-timer" class="play-timer">0:00</span>
+      </div>
+      <div class="header-title-block">
+        <div class="header-rule"></div>
+        <h1 class="site-title" id="play-title">CROSSWORD</h1>
+        <div class="header-rule"></div>
+        <p class="site-tagline" id="play-byline"></p>
+      </div>
+    </div>
+  </header>
+
+  <main class="play-main">
+    <div class="play-grid-area">
+      <div class="grid-wrapper">
+        <div id="play-grid" class="crossword-grid play-grid"></div>
+      </div>
+    </div>
+    <aside class="play-sidebar">
+      <div class="active-clue-banner" id="active-clue-banner">
+        <span class="active-clue-num" id="active-clue-num"></span>
+        <span class="active-clue-dir" id="active-clue-dir"></span>
+        <span class="active-clue-text" id="active-clue-text">Select a cell to begin</span>
+      </div>
+      <div class="play-clues">
+        <div class="play-clues-col">
+          <h4>Across</h4>
+          <div id="play-clues-across" class="clue-list"></div>
+        </div>
+        <div class="play-clues-col">
+          <h4>Down</h4>
+          <div id="play-clues-down" class="clue-list"></div>
+        </div>
+      </div>
+      <div class="play-controls">
+        <button class="btn btn-secondary" id="reveal-btn">Reveal Letter</button>
+        <button class="btn btn-secondary" id="check-btn">Check</button>
+        <button class="btn btn-danger" id="clear-btn">Clear All</button>
+      </div>
+    </aside>
+  </main>
+
+  <div id="win-modal" class="modal" style="display:none;">
+    <div class="modal-box">
+      <h2>🎉 Puzzle Complete!</h2>
+      <p id="win-time"></p>
+      <button class="btn btn-primary" id="win-home">Back to Puzzles</button>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="storage.js"></script>
+  <script src="play.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crossword Maker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="maker.css" />
+</head>
+<body class="maker-page">
+  <header class="site-header maker-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="index.html" class="nav-link">← Back to Puzzles</a>
+        <div class="maker-user-bar">
+          <span id="maker-user-email" class="maker-user-email"></span>
+          <button class="btn btn-secondary" id="logout-btn" style="display:none;">Sign Out</button>
+        </div>
+      </div>
+      <div class="header-title-block">
+        <div class="header-rule"></div>
+        <h1 class="site-title">CROSSWORD MAKER</h1>
+        <div class="header-rule"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login overlay -->
+  <div id="login-overlay" class="login-overlay">
+    <div class="login-box">
+      <div class="header-rule"></div>
+      <h2 class="login-title">MAKER LOGIN</h2>
+      <div class="header-rule"></div>
+      <p class="login-sub">Sign in to create and publish puzzles.</p>
+      <div class="login-form">
+        <input type="email" id="login-email" placeholder="Email" autocomplete="email" />
+        <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" />
+        <button class="btn btn-primary" id="login-btn">Sign In</button>
+        <div id="login-error" class="login-error"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="maker-content" style="display:none;">
+  <main class="maker-main">
+    <!-- LEFT: Controls -->
+    <aside class="maker-sidebar">
+      <div class="sidebar-section">
+        <h3>Grid</h3>
+        <div class="control-row">
+          <label>Rows</label>
+          <input type="number" id="grid-rows" value="15" min="5" max="25" />
+        </div>
+        <div class="control-row">
+          <label>Cols</label>
+          <input type="number" id="grid-cols" value="15" min="5" max="25" />
+        </div>
+        <button class="btn btn-secondary" id="new-grid-btn">New Grid</button>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Mode</h3>
+        <div class="mode-buttons">
+          <button class="btn mode-btn active" id="mode-black" data-mode="black">
+            ⬛ Black Squares
+          </button>
+          <button class="btn mode-btn" id="mode-letter" data-mode="letter">
+            🔤 Type Letters
+          </button>
+        </div>
+        <p class="mode-hint" id="mode-hint">Click cells to toggle black squares. Hold Shift to mirror.</p>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Clues</h3>
+        <p class="clue-hint">After placing letters, fill in clues below. Numbers are auto-generated.</p>
+        <div class="clues-panel">
+          <div class="clues-col">
+            <h4>Across</h4>
+            <div id="clues-across"></div>
+          </div>
+          <div class="clues-col">
+            <h4>Down</h4>
+            <div id="clues-down"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Publish</h3>
+        <div class="control-row">
+          <label>Title</label>
+          <input type="text" id="puzzle-title" placeholder="e.g. Monday, April 7" />
+        </div>
+        <div class="control-row">
+          <label>Author</label>
+          <input type="text" id="puzzle-author" placeholder="Your name" />
+        </div>
+        <button class="btn btn-primary" id="publish-btn">Publish Puzzle →</button>
+        <div id="publish-msg" class="publish-msg"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Load Existing</h3>
+        <select id="load-select">
+          <option value="">— select a puzzle —</option>
+        </select>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="load-btn">Load</button>
+          <button class="btn btn-danger" id="delete-btn">Delete</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT: Grid -->
+    <div class="maker-grid-area">
+      <div class="grid-wrapper">
+        <div id="maker-grid" class="crossword-grid maker-grid"></div>
+      </div>
+    </div>
+  </main>
+  </div><!-- /#maker-content -->
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="storage.js"></script>
+  <script src="maker.js"></script>
+</body>
+</html>
