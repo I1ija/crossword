@@ -165,9 +165,159 @@
   margin-bottom: 24px;
 }
 
+/* Mobile clue bar & drawer — hidden on desktop */
+.mobile-clue-bar   { display: none; }
+.mobile-clue-drawer { display: none; }
+
+/* =============================================
+   MOBILE LAYOUT  (≤ 800px)
+   ============================================= */
 @media (max-width: 800px) {
-  .play-main { flex-direction: column-reverse; }
-  .play-sidebar { width: 100%; min-width: unset; border-left: none; border-bottom: 2px solid var(--black); max-height: 50vh; }
-  .play-grid-area { padding: 16px; }
-  :root { --cell-size: var(--cell-size-sm); }
+
+  /* Shrink header */
+  .play-header .site-title { font-size: 1.3rem; letter-spacing: 0.1em; }
+  .play-header .header-rule { display: none; }
+  .play-header .site-tagline { display: none; }
+  .play-header .header-title-block { margin: 0; }
+  .play-header .header-inner { padding: 10px 16px 8px; }
+
+  /* Sticky active-clue bar */
+  .mobile-clue-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--black);
+    color: var(--white);
+    padding: 10px 14px;
+    min-height: 52px;
+  }
+  .mobile-clue-inner {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px;
+    min-width: 0;
+  }
+  .mobile-clue-num {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  .mobile-clue-dir {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #aaa;
+    flex-shrink: 0;
+  }
+  .mobile-clue-text {
+    font-family: var(--font-serif);
+    font-size: 0.88rem;
+    line-height: 1.35;
+    flex: 1 1 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mobile-clues-toggle {
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    font-size: 1.4rem;
+    line-height: 1;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Main: grid only, centered, scrollable */
+  .play-main {
+    flex-direction: column;
+    min-height: unset;
+  }
+  .play-grid-area {
+    padding: 12px 8px;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  /* Hide the desktop sidebar entirely on mobile */
+  .play-sidebar { display: none; }
+
+  /* Clue drawer — slides up from bottom */
+  .mobile-clue-drawer {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    background: var(--white);
+    border-top: 3px solid var(--black);
+    max-height: 60vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.25s ease;
+  }
+  .mobile-clue-drawer.open {
+    transform: translateY(0);
+  }
+  .mobile-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--gray-light);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0;
+    background: var(--white);
+  }
+  .mobile-drawer-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--gray-dark);
+    line-height: 1;
+    padding: 2px 6px;
+  }
+  .mobile-drawer-body {
+    display: flex;
+    gap: 0;
+  }
+  .mobile-drawer-col {
+    flex: 1;
+    padding: 12px 14px;
+    border-right: 1px solid var(--gray-light);
+  }
+  .mobile-drawer-col:last-child { border-right: none; }
+  .mobile-drawer-col h4 {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  /* Smaller cells on mobile */
+  :root { --cell-size: 30px; }
 }

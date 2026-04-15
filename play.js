@@ -39,8 +39,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   computeNumbering();
   renderGrid();
   renderClues();
+  syncMobileClueList();
   startTimer();
   bindControls();
+  bindMobileDrawer();
 });
 
 function initUserGrid() {
@@ -195,9 +197,59 @@ function updateActiveClueBanner() {
   if (puzzle.cells[r][c].black) return;
   const num = wordNumber(r, c, selectedDir);
   const clueText = puzzle.clues[selectedDir][num] || '…';
-  document.getElementById('active-clue-num').textContent = num;
-  document.getElementById('active-clue-dir').textContent = selectedDir.toUpperCase();
+
+  // Desktop banner
+  document.getElementById('active-clue-num').textContent  = num;
+  document.getElementById('active-clue-dir').textContent  = selectedDir.toUpperCase();
   document.getElementById('active-clue-text').textContent = clueText;
+
+  // Mobile sticky bar
+  document.getElementById('mobile-clue-num').textContent  = num;
+  document.getElementById('mobile-clue-dir').textContent  = selectedDir.toUpperCase();
+  document.getElementById('mobile-clue-text').textContent = clueText;
+}
+
+// ─── Mobile drawer ────────────────────────────────────────────────────────────
+function syncMobileClueList() {
+  // Mirror the desktop clue lists into the mobile drawer
+  ['across', 'down'].forEach(dir => {
+    const src  = document.getElementById(`play-clues-${dir}`);
+    const dest = document.getElementById(`mobile-clues-${dir}`);
+    if (src && dest) dest.innerHTML = src.innerHTML;
+    // Wire up click events on the copies
+    dest.querySelectorAll('.clue-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const num = +item.dataset.num;
+        const d   = item.dataset.dir;
+        // Find the start cell for this clue number + direction
+        for (let r = 0; r < puzzle.rows; r++) {
+          for (let c_ = 0; c_ < puzzle.cols; c_++) {
+            if (numbering[r][c_] === num) {
+              selectedCell = { r, c: c_ };
+              selectedDir  = d;
+              highlight();
+              updateActiveClueBanner();
+              focusHidden();
+              closeDrawer();
+              return;
+            }
+          }
+        }
+      });
+    });
+  });
+}
+
+function closeDrawer() {
+  document.getElementById('mobile-clue-drawer').classList.remove('open');
+}
+
+function bindMobileDrawer() {
+  document.getElementById('mobile-clues-toggle').addEventListener('click', () => {
+    syncMobileClueList(); // refresh highlights
+    document.getElementById('mobile-clue-drawer').classList.toggle('open');
+  });
+  document.getElementById('mobile-drawer-close').addEventListener('click', closeDrawer);
 }
 
 // ─── Input ────────────────────────────────────────────────────────────────────
