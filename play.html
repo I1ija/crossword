@@ -12,7 +12,10 @@
     <div class="header-inner">
       <div class="header-top">
         <a href="index.html" class="nav-link">← All Puzzles</a>
-        <span id="play-timer" class="play-timer">0:00</span>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="theme-toggle" aria-label="Switch to dark mode">🌙</button>
+          <span id="play-timer" class="play-timer">0:00</span>
+        </div>
       </div>
       <div class="header-title-block">
         <div class="header-rule"></div>
@@ -89,6 +92,7 @@
     </div>
   </div>
 
+  <script src="theme.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js"></script>

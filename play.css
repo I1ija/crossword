@@ -321,3 +321,17 @@
   /* Smaller cells on mobile */
   :root { --cell-size: 30px; }
 }
+
+/* =============================================
+   DARK MODE – play page
+   ============================================= */
+[data-theme="dark"] .play-sidebar        { background: var(--white); border-color: var(--gray-light); }
+[data-theme="dark"] .active-clue-banner  { background: #0e0d0c; border-color: var(--gray-light); }
+[data-theme="dark"] .mobile-clue-bar     { background: #0e0d0c; }
+[data-theme="dark"] .mobile-clue-drawer  { background: var(--white); border-color: var(--gray-light); }
+[data-theme="dark"] .mobile-drawer-header { background: var(--white); border-color: var(--gray-light); }
+[data-theme="dark"] .clue-item:hover     { background: var(--gray-light); }
+[data-theme="dark"] .clue-item.active    { background: #162a3a; border-left-color: var(--accent); }
+[data-theme="dark"] .play-controls       { border-color: var(--gray-light); }
+[data-theme="dark"] .play-timer          { background: var(--gray-light); color: var(--black); }
+[data-theme="dark"] .modal-box           { background: var(--white); border-color: var(--gray-light); }

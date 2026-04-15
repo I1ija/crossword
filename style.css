@@ -20,8 +20,53 @@
   --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
 }
 
+/* =============================================
+   DARK MODE VARIABLES
+   ============================================= */
+[data-theme="dark"] {
+  --black: #e8e2d8;
+  --white: #1a1918;
+  --cream: #121110;
+  --gray-light: #2e2b28;
+  --gray-mid: #6b6560;
+  --gray-dark: #a09a92;
+  --accent: #d4a843;
+  --accent-light: #e8c068;
+  --shadow: 0 2px 12px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
+}
+
+/* Grid cells need explicit dark overrides since they use hardcoded colours */
+[data-theme="dark"] .cell:not(.black)        { background: #1e1c1a; border-color: #3a3530; }
+[data-theme="dark"] .cell-letter             { color: var(--black); }
+[data-theme="dark"] .cell-number             { color: var(--gray-dark); }
+[data-theme="dark"] .cell.selected           { background: #1a3a5c !important; }
+[data-theme="dark"] .cell.word-highlight     { background: #162a3a !important; }
+[data-theme="dark"] .cell.correct            { background: #1a3a1a !important; }
+[data-theme="dark"] .cell.wrong              { background: #3a1a1a !important; }
+[data-theme="dark"] .cell.revealed           { background: #3a2a0a !important; }
+[data-theme="dark"] .crossword-grid          { background: #3a3530; border-color: #3a3530; }
+
+/* Puzzle cards */
+[data-theme="dark"] .puzzle-card             { border-top-color: var(--black); }
+[data-theme="dark"] .card-preview            { background: #1e1c1a; border-color: var(--gray-light); }
+
+/* Theme toggle button */
+.theme-toggle {
+  background: none;
+  border: 1.5px solid var(--gray-mid);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  line-height: 1.4;
+  color: var(--gray-dark);
+  transition: border-color 0.15s, background 0.15s;
+}
+.theme-toggle:hover { border-color: var(--black); background: var(--gray-light); }
+
 html { font-size: 16px; }
-body { background: var(--cream); color: var(--black); font-family: var(--font-serif); min-height: 100vh; }
+body { background: var(--cream); color: var(--black); font-family: var(--font-serif); min-height: 100vh; transition: background 0.2s, color 0.2s; }
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }

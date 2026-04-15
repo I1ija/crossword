@@ -266,3 +266,20 @@ select#load-select:focus { border-color: var(--black); }
   flex-direction: column;
   flex: 1;
 }
+
+/* =============================================
+   DARK MODE – maker page
+   ============================================= */
+[data-theme="dark"] .maker-sidebar           { background: var(--white); border-color: var(--gray-light); }
+[data-theme="dark"] .sidebar-section          { border-color: var(--gray-light); }
+[data-theme="dark"] .control-row input        { background: var(--cream); border-color: var(--gray-light); color: var(--black); }
+[data-theme="dark"] .control-row input:focus  { background: var(--white); border-color: var(--black); }
+[data-theme="dark"] .clue-input              { background: var(--cream); border-color: var(--gray-light); color: var(--black); }
+[data-theme="dark"] .clue-input:focus        { background: var(--white); border-color: var(--black); }
+[data-theme="dark"] select#load-select       { background: var(--cream); border-color: var(--gray-light); color: var(--black); }
+[data-theme="dark"] .maker-grid .cell:not(.black):hover { background: #1a2a3a !important; }
+[data-theme="dark"] .maker-grid .cell.selected          { background: #1a3a5c !important; }
+[data-theme="dark"] .maker-grid .cell.word-highlight    { background: #162a3a !important; }
+[data-theme="dark"] .login-box              { background: var(--white); border-color: var(--gray-light); }
+[data-theme="dark"] .login-form input       { background: var(--cream); border-color: var(--gray-light); color: var(--black); }
+[data-theme="dark"] .login-form input:focus { background: var(--white); }
